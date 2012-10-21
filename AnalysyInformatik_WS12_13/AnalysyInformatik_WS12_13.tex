@@ -1,0 +1,554 @@
+%% Basierend auf einer TeXnicCenter-Vorlage von Mark Müller
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Wählen Sie die Optionen aus, indem Sie % vor der Option entfernen  
+% Dokumentation des KOMA-Script-Packets: scrguide
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Optionen zum Layout des Buchs                                     %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[
+12pt,								% Schriftgröße (12pt, 11pt (Standard))
+chapterprefix,				% vor Kapitelüberschrift wird "Kapitel Nummer" gesetzt
+idxtotoc,						% Index im Inhaltsverzeichnis
+]
+{scrbook}
+
+\usepackage[ngerman]{babel}
+\usepackage[ansinew]{inputenc}
+\usepackage{amsmath}
+\usepackage{ifpdf}
+\usepackage[colorlinks,bookmarksopen]{hyperref}
+\usepackage{color}
+\usepackage{latexsym}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{wasysym}
+\usepackage{cancel}
+
+%\usepackage[utf8]{inputenc}
+
+%% Falls die automatische Worttrennung in Wörtern mit Umlauten
+%% nicht funktionieren sollte oder der Text pixelig aussieht:
+%% ==> Installieren Sie die cm-super Fonts (z.B. mit dem mikTeX Package Manager).
+%% Eine nicht ganz vollwertige Alternative ist die Verwendung dieses Pakets:
+%\usepackage{ae, aeguill}
+\usepackage{graphicx} %%Zum Laden von Grafiken
+%% Bibliographiestil %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\usepackage{natbib}
+\begin{document}
+
+\title{Sktipt der Analysis für Informatiker WS12/13 UPB}
+\author{Prof. Dr. Eike Lau}
+\date{19.10.2012 - }	% falls anderes, als das aktuelle gewünscht
+\maketitle 						% Titelei wird erzeugt
+\tableofcontents			% Inhaltsverzeichnis
+\frontmatter					% Vorspann (z.B. römische Seitenzahlen)
+\mainmatter						% Hauptteil
+
+\chapter{Mengen}
+
+
+\section{Definition}
+
+\textbf{1)} \\Eine Menge ist eine Ansammlung verschiedener Objekte. \\ \\
+\textbf{2)} \\Die Objekte einer Menge heißen \underline{Elemente}. \\ \\
+\textit{Notation:} \\
+$a \in M$ heißt: $a$ ist Element der Menge $M$ \\
+$a \notin M$ heißt: $a$ ist kein Element der Menge $M$
+\textbf{3)} \\ \\Sei $M$ eine Menge. Eine Menge $U$ heißt Teilmenge von $M$, wenn jedes Element von $U$ auch ein Element von $M$ ist. \\ \\
+\textit{Notation:} \\
+$U \subseteq M$ heißt: $U$ ist Teilmenge der Menge $M$ \\
+$U \not \subseteq M$ heißt: $U$ ist keine Teilmenge der Menge $M$
+
+
+\section{Beispiele}
+
+\textbf{1)} \\Sei $M$ die Menge aller Studierenden in L1, \\
+$W$ die Menge aller weiblichen Studierenden in L1, \\
+$F$ die Menge aller Frauen. \\ \\
+Dann gilt: $W \subseteq M, W \subseteq F, M \not \subseteq F, F \not \subseteq M$. \\ \\
+\textbf{2)} \\Die Menge der natürlichen Zahlen: $\mathbb+{N}=\{1,2,3,..\}$ \\ \\
+G sei Menge der geraden natürlichen Zahlen. \\
+$G := \{n \in \mathbb{N} |$ $n$ gerade $\}$ \\
+\hphantom{spaces}$ G := \{2m | m \in \mathbb{N}\}$ \\
+\hphantom{spaces}$ N := \{2,4,6,8,...\}$ \\ \\
+Es gilt $G \subseteq \mathbb{N}$, $\mathbb{N} \not \subseteq G$. \\ \\
+\textbf{3)} \\Die Menge der ganzen Zahlen: \\
+$\mathbb{Z} = \{0,-1,1,-2,2,...\}$ \\ \\ \\
+\textbf{4)} \\Menge der rationalen Zahlen: \\
+$\mathbb{Q} = \frac{a}{b} | a,b \in \mathbb{Z}, b \not = 0\}$ \\ \\
+\textbf{5)} \\Die Menge ohne Elemente heißt \underline{leere Menge}. \\
+\textit{Symbol:} $\emptyset = \{\}$ \\ \\
+\framebox{Bemerkung} \\
+\hphantom{spaces} Für jede Menge $M$ gilt: $\emptyset \subseteq M$ \\
+\hphantom{spaces} $\mathbb{N} \subseteq \mathbb{Z} \subseteq \mathbb{Q}$
+
+
+\section{Definition}
+
+Sei $M$ eine Menge, $U,V \subseteq M$ Teilmengen. \\ \\
+\textbf{1)} \\Die Vereinigung von $U$ und $V$ ist $U \cup V := \{x \in M | x \in U$ oder $x \in V\}$ \\ \\
+\textbf{2)} \\Der Durchschnitt von $U$ und $V$ ist $U \cap V := \{x \in M | x \in U$ oder $x \in V\}$ \\ \\
+\textbf{3)} \\Die Differenzmenge von $U$ und $V$ ist $U \slash V := \{x \in U | x \not \in V\}$ \\ \\
+\textbf{4)} \\Das Komplement von $U$ ist $U^c = M \slash U = \{x \in M | x \not \in U\}$ \\ \\
+\textit{Beispiel} \\
+Sei $M = \mathbb{N}$.\\
+$\{1,3\} \cup \{3,5\} = \{1,3,5\}$ \\
+$\{1,3\} \cap \{3,5\} = \{3\}$ \\
+$\{1,3\} \cap \{2,4,7\} = \emptyset$ ,also sind $\{1,3\}$ und $\{2,4,7\}$ disjunkt. \\
+$\{1,2,3\} \slash \{3,4,5\} = \{1,2\}$ \\
+$\{1,3,5\}^c = \{2,4,6,7,8,...\}$
+
+
+\section{de Morgansche Regeln}
+
+$M$ Menge, $U,V \subseteq M$ Teilmengen. \\ \\
+\textbf{1)}$(U \cup V)^c = U^c \cap V^c$ \\
+\textbf{2)}$(U \cap V)^c = U^c \cup V^c$ \\ \\
+
+\subsection{Beweis}
+\textbf{1)} \\Sei $x \in M$. Es gilt: \\
+$x \in (U \cup V)^c \Leftrightarrow x \not \in U \cup V \Leftrightarrow x \not \in U$ und $x \not \in V $ \\
+$\Leftrightarrow x \in U^c $ und $x \in V^c \Leftrightarrow x \in U^c \cap V^c$ \\
+\hphantom{spaces}\hphantom{spaces}\hphantom{spaces}\hphantom{spaces}\hphantom{spaces}\hphantom{spaces}\hphantom{spaces}$\square$ \\ \\
+\textbf{2)} \\\textit{Übungsaufgabe} \\ \\
+
+
+\section{Prinzip der vollständigen Induktion}
+Für jedes $n \in \mathbb{N}$ sei eine Aussage $A(n)$ gegeben. \\
+\underline{Ziel:} Beweisen, dass $A(n)$ für jedes $n \in \mathbb{N}$ wahr ist.\\
+Dafür reicht es zu zeigen: \\ \\
+\textbf{1)} \\Induktionsanfang: $A(1)$ ist wahr. \\ \\
+\textbf{2)} \\Induktionsschritt: Wenn für ein $n \in \mathbb{N}$ $A(n)$ wahr ist, dann ist auch $A(n+1)$ wahr.
+
+
+\section{Satz / Beispiel}
+
+Für jede natürliche Zahl $n$ gilt:
+$1+2+3+...+n = \frac{n(n+1)}{2}$ \\ \\
+\textit{Probe:} \\
+\begin{tabular}{c|c|c|c|c}
+$n$ & 1 & 2 & 3 & 4\\
+\hline
+$1+2+...+n$ & 1 & 3 & 6 & 10\\
+\hline
+$\frac{n(n+1)}{2}$ & 1 & 3 & 6 & 10\\
+\end{tabular} \\ \\ \\
+\underline{Beweis des Satzes} (mit Induktion) \\ \\
+Abkürzung: $S(n) = 1+2+...+n$ \\
+Aussage: $A(n)$ : $S(n) = \frac{n(n+1)}{2}$ \\ \\
+\textbf{1)} IA: \hphantom{spaces} $n=1$ \hphantom{spaces} $S(1)= 1 = \frac{1 \cdot 2}{2}$ \\
+\textbf{2)} IS: \hphantom{spaces} $n \rightarrow n+1$ \\ \\ \\
+Annahme: $A(n)$ gilt, $S(n) = \frac{n(n-1)}{2}$ \\
+Zu zeigen: $A(n+1)$ gilt, $S(n+1) = \frac{(n+1)(n+2)}{2}$ \\
+$$ S(n+1) = S(n)+n+1 = \frac{n(n+1)}{2} + \frac{2(n+1)}{2} = \frac{(n+2)(n+1)}{2} $$ \\ \\
+\textit{Dies beendet den Beweis.} \hphantom{spaces}\hphantom{spaces}\hphantom{spaces}\hphantom{spaces}$\hphantom{spaces}\hphantom{spaces}\hphantom{spaces}\square$ \\ \\
+\textit{Zur Vereinfachung der Notation:} Seien $a_1$, $a_2$, $a_3$,...,$a_n$ Zahlen $n \in \mathbb{N}$ \\
+Setze $\sum\limits_{k=1}^{n} := a_1 + a_2 + ... + a_n$ \\ \\
+\textit{Allgemeiner:} Sei $l,m \in \mathbb{N}, l \leq m \leq n$ \\
+$\Rightarrow \sum\limits_{k=l}^{m}a_k := a_l+ a_{l+1} + ... + a_m $ \\ \\
+\textbf{Aussage von Satz 1.6:} \\
+$\sum\limits_{k=1}^{n}k = \frac{n(n+1)}{2}$
+
+
+\section{Kombinatorik}
+
+\subsection{Definition}
+Seien $A$,$B$ Mengen. Das kartesische Produkt von $A$ und $B$ ist definiert als $A \times B := \{(a,b) | a \in A, b \in B\}$ \\
+Die Elemente von $A \times B$ heißen \underline{geordnete Paare}. \\ \\
+\textit{Beispiel:} $\{1,7\} \times \{2,3\} = \{(1,2),(1,3),(7,2),(7,3)\}$ \\ \\
+\textit{Allgemeiner:} Gegeben seien Mengen $A_1, ..., A_k$ mit $k \in \mathbb{N}$. Das kartesische Produkt von $A_1, ..., A_k$ ist $A_1 \times ... \times A_k = \{(a_1,...,a_k) | a_i \in A_i$ für $i=1,...,k\}$ \\
+Elemente von $A_1 \times ... \times A_k$ heißen \underline{k-Tupel}. \\
+Falls $A_1=A_2=...=A_k=A$, schreibe auch $\underbrace{A \times ... \times A}_{k-Mal} = A^k$
+ 
+\section{Definition}
+Eine Menge $A$ ist endlihc, wenn $A$ nur endlich viele Elemente hat. Dann bezeichnet $\#A = |A|$ die Anzahl der Elemente von A. \\Wenn $A$ nicht endlich ist, dann schreiben wir $\#A=\infty$. \\ \\
+\textit{Beispiele:} $\#\emptyset = 0$, $\#\mathbb{N}=\infty$, $\#\{1,3,5,1\}=3$
+
+
+\section{Bemerkung}
+\textbf{1)} \\ Sei $A$ Menge, $U,V \subseteq A$ \underline{disjunkte} Teilmengen. \\
+Dann: $\#(U \cup V) = \#U + \#V$ \\ \\
+\textbf{2)} \\ Seien $A_1,...,A_k$ endliche Mengen, $k \in \mathbb{N}$. \\
+Dann: $\#(A_1 \times A_2 \times ... \times A_k = \#A_1 \cdot \#A_2 \cdot ... \cdot \#A_k$
+
+\section{Definition}
+\textbf{1)} \\
+Für $n \in \mathbb{N}$ setze $n! = 1 \cdot 2 \cdot ... \cdot n = \prod\limits_{k=1}^{n}k$ \hphantom{spaces} $\leftarrow$ Produkt \\ Setze $0! = 1$ \\ \\
+\textbf{2)} \\ Für $k,n \in \mathbb{Z}$ mit $0 \leq k \leq n$ sei $n \choose k := \frac{n!}{k!(n-k)!}$ \hphantom{spaces} $\leftarrow$ \underline{Binomialkoeffizient} \\ \\
+-- TABELLE -- \\ \\ \\
+\textit{Beispiel:} $5 \choose 2$ $= \frac{5!}{2! \cdot 3!} = \frac{5 \cdot 4 \cdot 3 \cdot 2 \cdot 1}{2 \cdot 1 \cdot 3 \cdot 2 \cdot 1} = 10$ \\ \\  \textit{Bemerkung:} $n \choose 0$ $= 1 =$ $n \choose n$
+
+\section{Lemma}
+Für $0 \leq k \leq n$ gilt: $n \choose k$ $=$ $n-1 \choose k-1$ $+$ $n-1 \choose k$ \\ \\
+\textit{Beweis} \\ $n-1 \choose k-1$ $+$ $n-1 \choose k$ $= \frac{(n-1)!}{(k-1)(n-k)!} + \frac{(n-1)!}{k!(n-1-k)!} \\ = \frac{k(n-k)!+(n-k)(n-1)!}{k!(n-k)!} = \frac{n(n-1)!}{k!(n-k)!}=$ $n \choose k$ \\
+\hphantom{spaces}\hphantom{spaces}\hphantom{spaces}\hphantom{spaces}\hphantom{spaces}\hphantom{spaces}\hphantom{spaces}$\square$
+
+
+\section{Geometrische Anordnung: Pascalsches Dreieck}
+
+$
+\binom{0}{0}\\
+\binom{1}{0}\binom{1}{1}\\
+\binom{2}{0}\binom{2}{1}\binom{2}{2}\\
+$
+Folge $\binom{n}{k}\in\mathbb{N}\forall 0\leq k\leq n$
+
+
+\section{Satz}
+
+Sei A unendliche Menge\\
+$\#$ A = n \\  
+Sei k $\in\mathbb{Z}$ mit $0\leq k \leq n$\\
+$P_{k}(A)$ := $\{ U\subseteq A | \#U = k\}$ \\ 
+Menge aller k-elementigen Teilmengen von A, dann gilt $\# P_{k}(A) = \binom{n}{k}$
+
+\subsection{Beweis}
+Vorüberlegung: Sei k=0 oder k=n
+$P_{0}(A) = \{\emptyset\} P_{n}(A) = {A}$ \\
+$\# P_{0}(A) = 1 = \binom{n}{0} \#P_{n}(A) = 1 = \binom{n}{n} \surd$ \\
+\\
+Jetzt Induktionsbeweis nach n.
+I.A.: n=0 Dann k=0 $\surd$\\
+I.S.: n $\rightarrow$ n+1 Sei $\#$A= n+1\\
+$0\leq k\leq n+1$ Falls k=0 oder k=n+1: fertig\\
+Sei also $0 < k < n+1$\\
+Wähle $a\in A$
+Sei B=A $\ \{a\}\$ \\
+$Dann A = B $\cup\{a\} , \#B = n$\\
+Man kann die Wahl einer k-elementigen Teilmenge U von A so strukturieren.\\
+1. Entscheiden ob a$\in$U oder a$\notin$ U\\
+2.a Wenn a$\notin$ U: Wähle k Elemente aus B.\\
+2.b Wenn a$\in$ U: Wähle k-1 Elemente aus B.\\
+Daraus folgt:\\
+\begin{math}
+\#P_{k}(A) = \# P_{k}(B)+P_{k-1}(B) \stackrel{I.V.}{=} \binom{n}{k} + \binom{n}{k-1} \stackrel{1.11}{=} \binom{n+1}{k} \square
+\end{math}
+
+
+\section{Binomische Formel}
+
+Seien a,b Zahlen, n $\in\mathbb{N}$ Dann
+\begin{math}
+	(a+b)^n = \binom{n}{0} a^n + binom{n}{1}a^(n-1)b + binom{n}{2}a^(n-2)b^2 + \cdots + \binom{n}{n-1}ab^(n-1) + \binom{n}{n}b^n
+	\underline{z.B.:}(a+b)^4 = a^4 + 4a^3b + 6a^2b^2 + 4ab^3 + b^4 
+\end{math}
+
+\subsection{Beweis:}
+Schreibe $(a+b)^n = \underbrace{(a+b)(a+b)\cdots(a+b)}_{n Faktoren}$ \\
+Ausmultiplizieren:\\
+Erhalte Terme der Form $a^(n-k)b^k = $ Anzahl der Möglichkeiten aus n Faktoren k mal b zu wählen.\\
+Das ist $\binom{n}{k}_{Satz 1.13}$\\
+\underline{Folgerung:} Setze a=b=1 $a^(n-k)b^k=1$\\
+\begin{math}
+	(a+b)^n = 2^n = \binom{n}{0} + \binom{n}{1} + \cdots + \binom{n}{n-1} + \binom{n}{n}
+\end{math}
+
+
+\section{Definition}
+
+Sei A endliche Menge\\
+Eine Anordnung von A ist ein n-Tupel$(a_{1},a_{2},\cdots,a_{n-1},a_{n})$ mit $a_{i}\in A \forall$ i und j $a_{i}=a_{j}$ wenn $i \not= j$\\
+\underline{Beispiel} Anordnung von $\{1,2,3\}:(123)(132)(213)(231)(312)(321)$
+
+
+\section{Satz}
+
+Sei A endliche, nicht leere Menge , $ \# A = n$ \\
+Dann ist die Anzahl der Anordnungen von A = !n
+
+\subsection{Beweis}
+Induktion nach n\\
+\underline{I.A.:} n = 1 klar\\
+\underline{I.S.:}$ n\rightarrow n+1 Sei \# A= n+1$\\
+Wahl einer Anordnung von A kann man so unterteilen:
+\begin{itemize}
+	\item[1] Wähle 1 Element $a_{1}\in A (n+1 )$Möglichkeiten
+	\item[2] Wähle Anordnung von $A\ \{a_{1}\}$ 
+\end{itemize}
+$\# (A\ \{a_{1}\})=n \Rightarrow $n! Möglichkeiten bei 2.\\
+Insgesamt (n+1)n! =(n+1)! Möglichkeiten $\square$
+
+
+\section{Bemerkung - Zusammenhang zwischen anordnung und Teilmengen}
+
+Sei A endliche Menge mit $\# A = n 0\leq k \leq n$\\
+Sei $(a_{1},a_{2},\cdots , a_{n})$ Anordnung von A\\
+$\rightarrow $ Teilmenge U:=$\{a_{1},a_{2},\cdots ,a_{n}\}$. Dann \\
+$U \subseteq A, \# U = k U\in P_{k}(A)$ \\
+Jedes U $\in P_{k}(A)$ entsteht so, aber mehrfach:\\
+$\stackrel{Anordnungen\hspace{5pt} von\hspace{5pt} U}{k}\hspace{5pt} \stackrel{Anordnungen\hspace{5pt} von\hspace{5pt} A \ U}{(n-k!)}mal$\\
+n! $ \# Anordnungen\hspace{5pt} von\hspace{5pt} A = P_{k}(A. k!(n-k!) \Rightarrow \# P_{k}(A) = \frac{n!}{k!(n-k)!}$\\
+$\Rightarrow \# P_{k}(A) = \frac{n!}{k!(n-k)!} = \binom{n}{k}$
+
+
+
+
+\chapter{Die reelen Zahlen}
+
+	Was sind reelle Zahlen? Präzise Konstruktion ist umfangreich.\\
+	Axiomatische Zerlegung\\
+	Beschreibung der reelen Zahlen durch ihre Eigenschaften(Axiome).\\
+		\begin{itemize}
+			\item[1] Grundrechenarten $\rightarrow$ Körper
+			\item[2] Ungleichungen $\rightarrow$ Angeordneter Körper
+			\item[3] Lückenlosigkeit
+		\end{itemize}
+
+
+\section{Körper - Definition}
+
+	Ein Körper ist eine Menge K mit 2 Rechenoperationen: Addition(+) und Multiplikation(*).\\
+	So, dass folgende 9 Eigenschaften erfüllt sind:\\
+	\underline{Addition:}
+		\begin{itemize}
+			\item[1](a+b)+c = a+(b+c) Assoziativ $\forall a,b,c \in K$
+			\item[2] a+b		= b+a			Kommutativität
+			\item[3] Es gibt ein Element 0 $\in$ K so, dass 0+a=a+0=a $\forall a\in$K Nullelement
+			\item[4] $\forall a \in $ K $\exists ! b \in $K mit a+b=0 Additives Inverses
+			\item[Bemerkung 1] 0 $\in$K ist eindeutig.
+			\item[Beweis zu 1] $\acute{0} \in $K mit $\acute{0}$+a = a $\forall a \in$K, dann\\
+												 $0=\acute{0}+0 = 0 + \acute{0} = \acute{0} \square$
+			\item[Bemerkung 2] Das b in 4. ist eindeutig.
+			\item[Notation]		 b = -a (Negatives von a)
+			\item[Beweis zu 2] Sei $\acute{b}+a=0. b=b+0 = b+(a+\acute{b})=(b+a)+\acute{b}=0+\acute{b}=\acute{b}\square$
+		\end{itemize}
+	\underline{Multiplikation:}
+		\begin{itemize}
+			\item[5] a*(b*c) = (a*b)*c $\forall a,b,c \in$K außerdem sei a*b=ab
+			\item[6] ab			 = ba $\forall a,b \in$K
+			\item[7] $\exists ! 1\in$ K mit 1$\not=$ 0 so, dass 1a=a $\forall a\in$K
+			\item[8] $\forall a \in$ K $a\not= 0 \exists ! b \in $K mit ab=1
+			\item[Bemerkung ] 1 ist eindeutig. b in 8 ist eindeutig.
+			\item[Bezeichnung] b aus 8 b=$a^(-1)$
+			\item[Beweis] analog $\square$ 
+		\end{itemize}
+		\underline{Distributivgesetz}
+		\begin{itemize}
+			\item[9] a*(b+c)= ab+ac $\forall a,b,c\in$K
+			\item[Weitere Bezeichnung:] a-b:=a+(-b) $\frac{a}{b}$:= a$b^(-1)$ für b$\not=$0\\
+			Die üblichen Bedeutungen folgen aus den Axiomen 1-9\\
+			z.B. -(-a)=a \vspace{15pt} a(b-c)= ab-ac, a(-b)=-(ab)
+		\end{itemize}
+
+
+\section{Beispiel}
+
+	$
+	\mathbb{Q}$ ist ein Körper\\
+	$\mathbb{Z}$ ist kein Körper, da 8 nicht gegeben ist.
+
+
+\section{Beispiel}
+	$\mathbb{F}_{2} = \{0,1\}$
+		\begin{tabular}{c|cc}
+			+ & 0 & 1\\
+			\hline
+			0 & 0 & 1\\
+			1 & 1 & 0\\
+		\end{tabular}
+		\hspace{20pt}
+		\begin{tabular}{c|cc}
+			* & 0 & 1\\
+			\hline
+			0 & 0 & 0\\
+			1 & 0 & 1\\
+		\end{tabular}
+
+\subsection{Bemerkung}
+	Sei K \underline{endlicher} Körper\\
+	Dann gilt $\#$K = $p^r$ wobei p Primzahl, r $\in \mathbb{N}$\\
+	$\forall$ q = $p^r \in !$Körper K mit $\# $ K = q
+
+\subsection{Notation}
+	a$\in$ K, n $\in\mathbb{N}$
+	Setzte $a^n$ := $\underbrace{a*a\cdots *a}_{n-Faktoren}$\\
+	$a^0$ := 1\\
+	$a^(-n)$ := $(a^(-1))^n$\\
+	$\Rightarrow a^n$ definiert wenn a $\not=$0 , n $\in \mathbb{N}$\
+	Regeln der Potenzrechnung\\
+	$a^(n+m)=a^n*a^m$, $a^(n*m) = (a^n)^m$ für a $\not= 0$ n,m $\in\mathbb{Z}$\\
+	Beweis: Übung
+
+
+\section{Angeordnete Körper - Definition}\label{sec:Def24}
+
+	Ein angeordnerter Körper ist ein Körper K, für dessen Elemente eine "`kleiner Beziehung"' < definiert ist so, dass folgende 	Eigenschaften erfüllt sind.
+		\begin{itemize}
+			\item[1] $\forall a,b \in$ K gilt genau eine der drei Relationen a<b, a=b , b<a
+			\item[2] Für a,b,c$\in$K gilt, wenn a<b $\wedge$ b<c  $\Rightarrow$ a<c (Transitivität)
+			\item[3] Wenn a,b,c $\in$ K gilt: Wenn a<b $\Rightarrow$ (a+c)<(b+c)
+			\item[4] Für a,b,c $\in$ K gilt: Wenn a<b und 0<c, dann ac<bc 
+		\end{itemize}
+
+\subsection{Beispiel}
+	a>b heißt b<a\\
+	a $\leq$ b heißt a<b $\vee$ a=b\\
+	a $\in$ K heißt \underline{positiv}, wenn a > 0\\
+	a $\in$ K heipt \underline{negativ}, wenn a < 0
+	
+
+\section{Bemerkung}
+
+	1. Wenn a<0 dann -a>0
+	2. $\forall a\in$K mit $a \not= 0$ ist $a^2 \geq 0$
+	3.1>0 denn 1=$1^2 \Rightarrow \square$ 
+
+\subsection{Beweis zu 1}
+	a<0$\stackrel{\Rightarrow}{3}$ a+(-a)<0+(-a)$\Rightarrow$ 0<-a $\square$  
+
+\subsection{Beweis zu 2}
+	2 Möglichkeiten a.) a>0 oder b.) a>0\\
+	a.) a>0 $\Rightarrow$a*a>0*a $\Rightarrow a^2$>0\\
+	b.) Wenn a<0 dann -a>0 $a^2 = (-a)^2 >0 \square$
+
+
+\section{Bemerkung}
+
+	Sei K ein angeordneter Körper\\
+	0<1$\Rightarrow$0+1<1+1$\Rightarrow$1+1<1+1+1 usw.\\
+	Für n$\in\mathbb{N}$ setze n:= $\underbrace{1+1+\cdots+1}_{n Summanden}\in$ K\\
+	Dann 0<1<2<3<$\cdots$ in K
+
+\subsection{Folge}
+	Verschiedene natürliche Zahlen bleiben in K verschieden $\rightarrow$ Fasse $\mathbb{N}$ als Teilmenge von K auf.\\
+	Dann auch $\mathbb{Z}=\{a-b|a,b\in\mathbb{N}\}\subseteq$K\\
+	Dann auch $\mathbb{Q}=\{\frac{a}{b}|a,b\in\mathbb{N} b\not=0\}\subseteq$K\\
+	Insbesondere ist K unendlich!\\
+	z.B. $\mathbb{F}_{2}$ hat keine Anordnung wie Definition \ref{sec:Def24}
+
+
+\section{Definition}
+
+	Sei K ein angeordneter Körper, a$\in$K. Der Absolutbetrag von a ist definiert als
+	$|a|: a:= 
+		\begin{cases}
+			\hspace{9pt}a  & \text{wenn } a\geq0\\
+			-a & \text{wenn } a<0
+		\end{cases}
+	$
+
+
+\section{Satz}
+
+	Sei K angeordneter Körper a$\in$K dann gilt:\\
+		\begin{itemize}
+			\item[1] $a=0 \text{wenn} |a|=0$
+			\item[2] $-|a|\leq a\leq|a|$
+			\item[3] Dreiecksungleichung: $|a-b|\leq |a|+|b|$
+			\item[4] Untere Dreiecksungleichung: $|a-b|\geq |a|-|b|$ 
+		\end{itemize}
+\subsection{Beweis}
+	\begin{itemize}
+		\item[1] Klar.
+		\item[2] Wenn $a\geq 0:|a|=a \geq 0\Rightarrow  -|a|\leq 0\leq a=|a|$\\
+						 Wenn $a<0 \text{ dann } -|a|=0<0<|a|$
+		\item[3] Es gilt $-|a|\leq a\leq |a|$ , $-|b|\leq b\leq |b|$\\
+						 Wenn $a+b>0$ dann $|a+b|=a+b\leq |a|+b\leq |a|+|b|$\\
+						 Wenn $a+b<0$ dann $|a+b|?-(a+b)=(-a)+(-b)\leq |a|+|b|$
+		\item[4] $(a-b)+b=a\Rightarrow |a|=|(a-b)+b|\leq |a-b|+|b|\Rightarrow |a|-|b|\leq |a-b| _{\square}$
+	\end{itemize}
+	
+
+\section{Satz - Bernoullische Ungleichung}
+
+	Sei K angeordneter Körper, $a\in$ K, $a>-1$ und n$\in\mathbb{N}_{0}=\{0\}\cup\mathbb{N}$ Dann gilt $(1+a)^n\geq1+na$*
+
+\subsection{Beweis}
+	Induktion nach n\\
+	Anfang n=0 $(1+a)^0 = 1 = 1+0*a\surd$\\ 
+	I.V. *gelte\\
+	I.S. Schritt $n\rightarrow n+1$ Annahme $(1+a)^^n+1=(1+a)(1+a)^n \geq (1+a)(1+na)=1+(n+1)a+na^2\geq 1+(n+1)a$ weil $a^2\geq 	0\Rightarrow na^2\geq 0 _{\square}$
+
+
+\section{Definition}
+
+	Sei K angeordneter Körper M$\subseteq$K eine Teilmenge a$\in$K
+		\begin{itemize}
+			\item[1] M$\leq$a heißt x$\leq$a$\forall$x$\in$M Analog M$\geq$a etc.
+			\item[2] a heißt obere Schranke von M, wenn M$\leq$a
+			\item[3] M heißt nach oben beschränkt, wenn M eine obere Schranke hat.\\
+							 Analog nach unten beschränkt.\\
+							 M heißt beschränkt, wenn M nach oben $\wedge$ unten berschränkt ist.
+			\item[4] a heißt Maximum von M wenn M$\leq$a und a$\in$M\\
+							 Minimum analog.
+			\item[Notation:] a=max(M) bzw. a=min(M) 
+		\end{itemize}
+
+\subsection{Bemerkung}
+	Wenn M ein Maximum hat, ist es eindeutig.
+
+\subsection{Beweis}
+	Sei a,b$\in$M, M$\leq$a , M$\leq$b dann\\
+	b$\leq$a und a$\leq$b $\Rightarrow$ a=b $_{\square}$
+
+\subsection{Beispiel}
+	K=$\mathbb{Q}$
+		\begin{itemize}
+			\item[1] M=$\mathbb{N}$ Sei a$\in\mathbb{Q}$a$\leq\mathbb{N}$ a$\leq$ n $\forall$n$\in\mathbb{N}$
+							 $\mathbb{N}$ ist nach unten beschränkt 1=min($\mathbb{N}$).\\
+							 $\mathbb{N}$ ist nicht nach oben beschränkt.
+			\item[2] M$=\{\frac{-1}{n}|n\in\mathbb{N}\}0\notin$M\\
+							 -1=min(M)$\Rightarrow$ M nach unten beschränkt\\
+							 M$<$0 $\Rightarrow$ M ist nach oben beschränkt hat aber kein Maximum
+			\item[3] M$=\{\frac{-1}{n}|n\in\mathbb{N}\}\cup\{0\}$ min(M)$=-1|max(M)=0$
+			\item[4] M$=\emptyset$ hat kein Maximum und kein Minimum jedes a$\in\mathbb{Q}$ erfüllt a$\leq$ M und M$\leq$a
+		\end{itemize}  
+
+\subsection{Beweis zu 2}
+	Sei a$\in$M, dann $a=\frac{-1}{n}$, n $\in\mathbb{N}$ $\frac{-1}{n1}\in$M\\
+	$n+1>n\Rightarrow\frac{1}{n+1}<\frac{1}{n}\Rightarrow\frac{-1}{n+1}>\frac{-1}{n}\Rightarrow$M$\not\subseteq\frac{-1}{n}$ a 		keine obere Schranke$_{\square}$
+
+
+\section{Satz}
+
+	Sei K angeordneter Körper
+		\begin{itemize}
+			\item[1] Wenn M$\subset$K endlich und nicht leer, dann hat M ein Maximum und Minimum
+			\item[2] (Wohlordnungsprinzip) Jede nichtleere Teilmenge M$\subset\mathbb{N}$ hat ein Minimum
+		\end{itemize}
+
+\subsection{Beweis}
+	\begin{itemize}
+		\item[zu 1] Klar.
+		\item[zu 2] M ist nicht leer.\\
+								Wähle n$\in$M $\{1,2,\cdots ,n\}\cap$M endlich und nicht leer, dann min($\{1,2,\cdots 													    					,n\}\cap$M)=min(M)$_{\square}$
+	\end{itemize}
+
+
+\section{Vollständigkeit - Definition}
+	
+	Sei K angeordneter Körper, M$\subseteq$K a$\in$K aheißt \underline{kleinste obere Schranke oder Supremum} von M wenn:
+		\begin{itemize}
+			\item[1] M$\leq$a und
+			\item[2] kein b$\in$K mit b$<$a M$\leq$b erfüllt
+		\end{itemize}
+	a heißt \underline{größte untere Schranke oder Infimum} von M wenn:
+		\begin{itemize}
+			\item[1] a$\leq$a und
+			\item[2] Kein b$\in$K mit a$<$b b$\leq$M erfüllt.
+			\item[Notation] a=sup(M) bzw. a=inf(M) 
+		\end{itemize}
+		
+\subsection{Bemerkung}
+	Wenn a=max(M) dann a=sup(M)
+
+\subsection{Beweis}
+	Sei a= max(M)$\Rightarrow$M$\leq$a\\
+	Seib$<$a	\underline{a$\in$M}, a$\not\leq$b$\Rightarrow$ M $\not\leq$ b $\Rightarrow$ a=sup(M)$_{\square}$	
+
+\subsection{Bemerkung}
+	Wenn ein Supremum existiert, dann ist es eindeutig
+	
+\subsection{Beweis}
+	Angenommen a,b sind Suprema von M$\Rightarrow$M$\leq$a , M$\leq$b$\Rightarrow$a$\leq$b , b$\leq$a $\Rightarrow$ a=b
+	
+\subsection{Beispiel}
+	$sup(\{\frac{-1}{n}|n\in\mathbb{N}\})=0$
+	
+\appendix							% Beginn des Anhangs
+\chapter{Schluss}
+\texttt{l2tabu}, die \texttt{FAQ der Newsgroup de.text.tex} und natürlich der \texttt{scrguide} immer sehr hilfreich.
+\end{document}
+

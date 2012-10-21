@@ -1,0 +1,75 @@
+\documentclass[a4paper,twoside,10pt]{report}
+\usepackage[ngerman]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[ansinew]{inputenc}
+
+\usepackage{lmodern} %Type1-Schriftart für nicht-englische Texte
+
+\usepackage{graphicx} %%Zum Laden von Grafiken
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+
+\begin{document}
+
+$\begin{array} {ccc}
+	Vorname & Name & Matr.Nr  \\
+	Dominik & Guse & 6619195	\\
+\end{array}$
+
+
+
+\section{Aufgabe 1}
+
+$\begin{array}{ccc}
+ (i) Korrekt & (ii) k.A. & (iii) k.A. \\
+ (iv)Korrekt & (v)  k.A. & (vi)  Korrekt\\
+ (vii)Korrekt& (vii)falsch\\  
+\end{array}$
+
+
+\section{Aufgabe 2}
+
+\begin{itemize}
+	\item[a.)] $* \sum{i=0}^n (\alpha)^i =  \frac{1-(\alpha)^(n+1)}{1-\alpha}$ gilt $\forall\alpha\in\mathbb{R}\ 															\{1\}n\in\mathbb{Z},$mit $n\geq 0\\
+							I.A.: n=0 \sum_{i=0}^0 (\alpha)^i= \alpha^0 = 1 = \frac{1-(\alpha)^1}{1-\alpha}=0 \surd\\
+							I.V.: Es gelte *\\
+						 	\text{I.S.: }	n\rightarrow n+1$ $\sum_{i=0}^{n+1} (\alpha)^i = \frac{1-\alpha^{n+1+1}}{1-\alpha}\\
+							\Leftrightarrow (\sum_{i=0}^{n} \alpha^i) + \alpha^{n+1} \text{then black Magic happens} _{\square}\\
+						 $
+	\item[b.)] $* n^2 \leq 2^n \forall n\in\mathbb{N}$ mit $n\geq 4\\
+						 \text{I.A.:} n=4 $ $ 16\leq 16 \surd\\
+						 \text{I.V.:} * gelte\\
+						 \text{I.S.:} n\rightarrow n+1 (n+1)^2\leq 2^{n+1} \Leftrightarrow n^2+2n+1\leq 2^n * 2 = 2^n + 2^n\\
+						 \text{aus der I.V.kann man folgern, dass } n^2\leq 2^n \text{ gilt.}\\
+						 \text{Somit ist noch zu zeigen, dass}  ** 2n+1\leq 2^n \forall n\in\mathbb{N}$mit n$\geq 4
+						 \text{I.A.} n=4$ $2*4+1 = 9\leq 2^4 = 16 \surd\\
+						 \text{I.V.:} **$ $gelte\\
+						 \text{I.S.}n\rightarrow 2(n+1)+1\leq 2^{n+1}\\
+						 						\Leftrightarrow 2n+2+1\leq 2^n + 2^n\\
+						 \text{nach I.V. gilt bereits} 2n+1\leq 2^n\\
+						 						2\leq 2^n \forall n\in\mathbb{N}$ mit n$\geq 4$ trivial da 2 konst., somit gilt *$_{\square}
+						 $
+\end{itemize}
+
+
+\section{Aufgabe 3}
+
+\begin{itemize}
+	\item[a.)] $\{\}=\emptyset,\{1\},\{2\},\{3\},\{1,2\},\{1,3\},\{2,3\},\{1,2,3\}$
+\end{itemize}
+\newpage	
+\begin{itemize}
+	\item[b.)]  
+\end{itemize}
+	\vspace*{7cm}
+
+\section{Aufgabe 4}
+
+Man kann das Prinzip der vollständigen Induktion nit auf derartige Begebenheiten anwenden, da es hierbei nicht nur von der Tatsache, dass es andersfarbige Kulgeln gibt abhängt, ob farbige Kugeln aus dem Sack gezogen werden, sondern acuh vom Zufall, wann sie - so sie existieren - gezogen werden.\\
+Es ist z.B. möglich, dass wenn k Kugeln im Sack sind und eine davon farbig ist also k-1 Kugeln nicht farbig sind zuerst alle k-1 Kugeln gezogen werden und erst als letzte die Farbige.\\
+Wenn man bei n, wobei $n<k-1$, aufhörtkann man zwar darauf schließen , dass es nicht unbedingt wahrscheinlich ist, dass eine farbige Kugel existiert, aber nicht, dass keine enthalten ist.\\
+Kurz man kann darf die V.I. nicht auf Dinge anwenden, die vom Zufall abhängen.
+
+\end{document}
+
